@@ -26,5 +26,13 @@ pipeline {
                 }
             }
         }
+
+        stage('Maven build'){
+            stesps{
+                script{
+                    sh 'mvn clean install'
+                }
+            }
+        }
     }
 }
