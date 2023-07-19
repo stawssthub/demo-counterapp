@@ -1,73 +1,30 @@
-pipeline{
+pipeline {
+    agent any
+    tools {
+        maven 'maven-3.9'
+    }
     
-    agent any 
-    
-    stages {
+    stages{
+        stage('checkout code'){
+            steps{
+                git branch: 'main', url: 'https://github.com/stawssthub/demo-counterapp.git'
+            }
+        }
         
-        stage('Git Checkout'){
-            
+        stage('Unit Testing'){
             steps{
-                
                 script{
-                    
-                    git branch: 'main', url: 'https://github.com/vikash-kumar01/mrdevops_javaapplication.git'
+                    sh "mvn test"
                 }
             }
         }
-        stage('UNIT testing'){
-            
-            steps{
-                
-                script{
-                    
-                    sh 'mvn test'
-                }
-            }
-        }
+        
         stage('Integration testing'){
-            
             steps{
-                
                 script{
-                    
                     sh 'mvn verify -DskipUnitTests'
                 }
             }
         }
-        stage('Maven build'){
-            
-            steps{
-                
-                script{
-                    
-                    sh 'mvn clean install'
-                }
-            }
-        }
-        stage('Static code analysis'){
-            
-            steps{
-                
-                script{
-                    
-                    withSonarQubeEnv(credentialsId: 'sonar-api') {
-                        
-                        sh 'mvn clean package sonar:sonar'
-                    }
-                   }
-                    
-                }
-            }
-            stage('Quality Gate Status'){
-                
-                steps{
-                    
-                    script{
-                        
-                        waitForQualityGate abortPipeline: false, credentialsId: 'sonar-api'
-                    }
-                }
-            }
-        }
-        
+    }
 }
