@@ -28,7 +28,7 @@ pipeline {
         }
 
         stage('Maven build'){
-            stesps{
+            steps{
                 script{
                     sh 'mvn clean install'
                 }
