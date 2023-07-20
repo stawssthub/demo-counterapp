@@ -34,5 +34,15 @@ pipeline {
                 }
             }
         }
+
+        stage ('static code analasys'){
+            steps{
+                script{
+                    withSonarQubeEnv(credentialsId: 'sonar-api-key') {
+                        sh 'mvn clean package sonar:sonar'
+                    }
+                }
+            }
+        }
     }
 }
