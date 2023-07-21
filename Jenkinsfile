@@ -54,10 +54,9 @@ pipeline {
         }
 
         stage('upload war files to nexus'){
-
-            def readPomVersion = readMavenPom file: 'pom.xml'
             steps{
                 script{
+                    def readPomVersion = readMavenPom file: 'pom.xml'
                     nexusArtifactUploader artifacts: 
                     [[artifactId: 'springboot', 
                     classifier: '', file: 'target/Uber.jar', 
