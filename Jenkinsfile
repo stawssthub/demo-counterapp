@@ -69,7 +69,7 @@ pipeline {
                     nexusUrl: 'ec2-34-229-90-52.compute-1.amazonaws.com:8081', 
                     nexusVersion: 'nexus3', 
                     protocol: 'http', 
-                    repository: 'nexusRepo', 
+                    repository: nexusRepo, 
                     version: "${readPomVersion.version}"
                 }
             }
