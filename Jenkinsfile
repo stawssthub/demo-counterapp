@@ -66,7 +66,7 @@ pipeline {
                     ], 
                     credentialsId: 'nexus-api', 
                     groupId: 'com.example', 
-                    nexusUrl: 'ec2-34-229-90-52.compute-1.amazonaws.com:8081', 
+                    nexusUrl: 'ec2-3-95-226-98.compute-1.amazonaws.com:8081', 
                     nexusVersion: 'nexus3', 
                     protocol: 'http', 
                     repository: nexusRepo, 
