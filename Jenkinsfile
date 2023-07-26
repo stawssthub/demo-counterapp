@@ -85,7 +85,7 @@ pipeline {
             }
         }
 
-        /*stage('push to the dockerHub'){
+        stage('push to the dockerHub'){
             steps{
                 script{
                     withCredentials([string(credentialsId: 'docker_hub_api', variable: 'docker_hub_secret')]) {
@@ -95,6 +95,6 @@ pipeline {
                     }   
                 }
             }
-        } */
+        } 
     }
 }
