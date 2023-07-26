@@ -74,5 +74,27 @@ pipeline {
                 }
             }
         }
+
+        stage('Docker Image Build'){
+            steps{
+                script{
+                    sh 'docker image build -t $JOB_NAME:v1.I$BULD_ID .'
+                    sh 'docker image tag $JOB_NAME:v1.$BUILD_ID sunildckr/$JOB_NAME:v1.$BUILD_ID'
+                    sh 'docker image tag $JOB_NAME:v1.$BUILD_ID sunildckr/$JOB_NAME:latest'
+                }
+            }
+        }
+
+        /*stage('push to the dockerHub'){
+            steps{
+                script{
+                    withCredentials([string(credentialsId: 'docker_hub_api', variable: 'docker_hub_secret')]) {
+                     sh 'docker login -u sunildckr -p ${docker_hub_secret}'
+                     sh 'docker image push sunildckr/$JOB_NAME:v1.$BUILD_ID'
+                     sh 'docker image push sunildckr/$JOB_NAME:latest'
+                    }   
+                }
+            }
+        } */
     }
 }
